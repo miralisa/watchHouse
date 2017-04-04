@@ -25,7 +25,7 @@ import static android.R.id.message;
  * Created by anastasiia on 01.04.17.
  */
 
-public class Client extends AsyncTask<Void, Void, Void> {
+public class Client extends AsyncTask<String, String, String> {
 
     String dstAddress;
     int dstPort;
@@ -81,35 +81,45 @@ public class Client extends AsyncTask<Void, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(Void... params) {
-        Log.d(tag, "debut doItBackground");
-        try {
-            socket = new Socket(dstAddress, dstPort);
+    protected String doInBackground(String... params) {
+        if(!isCancelled()) {
+            Log.d(tag, "debut doItBackground" + params[0]);
+            try {
+                socket = new Socket(dstAddress, dstPort);
+                String msgReply = "Activate record";
+                if (params[0].compareTo("Record") == 0) {
+                    envoi(params[0]);
+                    Log.d(tag, "envoi " + params[0]);
 
-            String msgReply = "Activate record";
-            envoi(msgReply);
-            response = reception();
+                } else if (params[0].compareTo("Stop") == 0) {
+                    envoi(params[0]);
+                    Log.d(tag, "envoi " + params[0]);
+
+                    //envoi(msgReply);
+                }
+                response = reception();
 
                 //envoi("Stop record");
                 //Log.d(sep, "after sending, before reception");
 
 
-        } catch (UnknownHostException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            response = "UnknownHostException: " + e.toString();
+            } catch (UnknownHostException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                response = "UnknownHostException: " + e.toString();
 
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            response = "IOException: " + e.toString();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                response = "IOException: " + e.toString();
+            }
+            Log.d(tag, "doItBackground ok");
         }
-        Log.d(tag, "doItBackground ok");
         return null;//response;
     }
 
     @Override
-    protected void onPostExecute(Void result) {
+    protected void onPostExecute(String result) {
         textResponse.setText(response);
         super.onPostExecute(result);
     }

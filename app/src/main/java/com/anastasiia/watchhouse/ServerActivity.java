@@ -6,6 +6,7 @@ import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,20 +56,22 @@ public class ServerActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             isRecording = true;
-            Toast.makeText(this, "Starting a record", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Starting a record!", Toast.LENGTH_LONG).show();
             recorder.start();
+            chronometer.setBase(SystemClock.elapsedRealtime());
             chronometer.start();
+
 
         }
     }
     protected void stopRecording() {
         if(recorder!=null &&  isRecording == true){
+            Toast.makeText(this, "Stop recording!", Toast.LENGTH_LONG).show();
             recorder.stop();
             recorder.release();
             chronometer.stop();
-            surfaceView = null;
-            surfaceHolder = null;
-
+            //surfaceView = null;
+            //surfaceHolder = null;
             isRecording = false;
         }
     }
@@ -81,19 +84,19 @@ public class ServerActivity extends AppCompatActivity {
         response = (TextView) findViewById(R.id.textView);
         server = new Server(this);
         response.setText(server.getIpAddress() + ":" + server.getPort());
-        btnStop  = (Button)findViewById(R.id.btnStop);
+        //btnStop  = (Button)findViewById(R.id.btnStop);
         surfaceView = (SurfaceView)findViewById(R.id.surfaceView);
         surfaceHolder = surfaceView.getHolder();
         chronometer = (Chronometer) findViewById(R.id.chronometer);
         isRecording = false;
-
-
+        /*
         btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 stopRecording();
             }
         });
+        */
 
         response.addTextChangedListener(new TextWatcher() {
             @Override
@@ -104,8 +107,10 @@ public class ServerActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().compareTo("Activate record") == 0){
+                if(s.toString().compareTo("Record") == 0){
                     startRecording();
+                } if (s.toString().compareTo("Stop") == 0){
+                    stopRecording();
                 }
             }
 

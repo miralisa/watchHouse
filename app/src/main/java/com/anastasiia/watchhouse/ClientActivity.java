@@ -1,7 +1,9 @@
 package com.anastasiia.watchhouse;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,7 +17,8 @@ public class ClientActivity extends AppCompatActivity {
 
     TextView response;
     Button btnRecord, btnStop;
-    Boolean stop = false;
+    String ip = "192.168.1.91";
+    int port = 5555;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +28,12 @@ public class ClientActivity extends AppCompatActivity {
         btnRecord = (Button) findViewById(R.id.buttonRecord);
         btnStop = (Button) findViewById(R.id.btnStop);
 
-        final Client myClient = new Client("192.168.1.91", 5555, response);
 
         btnRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myClient.execute();
+                Client record = new Client(ip, port, response);
+                record.execute("Record");
 
 
             }
@@ -39,6 +42,8 @@ public class ClientActivity extends AppCompatActivity {
         btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Client stop = new Client(ip, port, response);
+                stop.execute("Stop");
             }
         });
 
