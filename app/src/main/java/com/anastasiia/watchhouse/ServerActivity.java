@@ -61,15 +61,16 @@ public class ServerActivity extends AppCompatActivity {
     File mediaStorageDir;
 
 
-    protected void startRecording(){
+    protected String startRecording(){
+        String saveFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/video.mp4";
         if (!isRecording){
-            String saveFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/video.mp4";
             recorder = new MediaRecorder();
             recorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
             recorder.setVideoSource(MediaRecorder.VideoSource.DEFAULT);
             CamcorderProfile cpHigh = CamcorderProfile
                     .get(CamcorderProfile.QUALITY_HIGH);
             recorder.setProfile(cpHigh);
+            recorder.setMaxDuration(10000);
             recorder.setPreviewDisplay(surfaceHolder.getSurface());
             recorder.setOutputFile(saveFile);
             try {
@@ -87,8 +88,8 @@ public class ServerActivity extends AppCompatActivity {
             chronometer.setBase(SystemClock.elapsedRealtime());
             chronometer.start();
 
-
         }
+        return saveFile;
     }
     protected void stopRecording() {
         if(recorder!=null &&  isRecording == true){
@@ -119,69 +120,14 @@ public class ServerActivity extends AppCompatActivity {
         chronometer = (Chronometer) findViewById(R.id.chronometer);
         isRecording = false;
 
-        mediaStorageDir = new File(
-                Environment
-                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                "watchHouse");
-        if (!mediaStorageDir.exists()) {
-            if (!mediaStorageDir.mkdirs()) {
-                Log.d("watchHouse", "failed to create directory");
-            }
-        }
-        /*
-        smsManager = SmsManager.getDefault();
-        //smsManager.
-        // ("+33612481787", null, "Motion detected", null, null);
-        //smsManager.sendMultimediaMessage(this, Uri.parse( mediaStorageDir.getPath() + File.separator + "WH_" +"3-4-2017_20h40s53" + ".jpg"), null,null, null);
-        Toast.makeText(this, mediaStorageDir.getPath() + File.separator + "WH_" +"3-4-2017_20h40s53" + ".jpg",Toast.LENGTH_LONG).show();
 
-        Intent sendIntent = new Intent(Intent.ACTION_SEND);
-        sendIntent.setClassName("com.android.mms", "com.android.mms.ui.ComposeMessageActivity");
-        sendIntent.putExtra("address","+33612481787");
-        sendIntent.putExtra("sms_body", "Motion detected");
-        sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+mediaStorageDir.getPath() + File.separator + "WH_" +"3-4-2017_20h40s53" + ".jpg"));
-        sendIntent.setType("image/jpg");
-        startActivity(sendIntent);
-        */
-        Toast.makeText(this, mediaStorageDir.getPath() + File.separator + "WH_" +"3-4-2017_20h40s53" + ".jpg",Toast.LENGTH_LONG).show();
-
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    GMailSender sender = new GMailSender("WatchUHouse@gmail.com",
-                            "jbdf4mnP");
-
-                    sender.sendMail("WatchUHouse: Datection movement", "Here is msg",
-                            mediaStorageDir.getPath() + File.separator + "WH_" +"6-4-2017_14h25s2" + ".jpg",
-                            "anastasiia.prysiazhniuk@gmail.com", "12miralis@gmail.com");
-                } catch (Exception e) {
-                    Log.e("SendMail", e.getMessage(), e);
-                }
-            }
-
-        }).start();
-
-
-        /*
-        dm = new DetectionMode();
-        dm.setListener(new DetectionMode.ChangeListener() {
-            @Override
-            public void onChange() {
-                Toast.makeText(getApplicationContext(),"DetectionMode changed", Toast.LENGTH_LONG).show();
-
-
-            }
-        }); */
         motionDetector = new MotionDetector(getApplicationContext(), (SurfaceView) findViewById(R.id.surfaceViewDetection));
         motionDetectorCallback = new MotionDetectorCallback() {
             @Override
             public void onMotionDetected() {
-                Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                v.vibrate(100);
-                Toast.makeText(getApplicationContext(), "Motion detected", Toast.LENGTH_LONG).show();
-
+                //Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                //v.vibrate(100);
+                Toast.makeText(getApplicationContext(), "Motion Detected", Toast.LENGTH_LONG).show();
                 Thread restart_preview = new Thread() {
                                 public void run() {
                                     try {
@@ -204,18 +150,10 @@ public class ServerActivity extends AppCompatActivity {
             }
         };
 
-        Toast.makeText(getApplicationContext(), "Motion detection mode", Toast.LENGTH_LONG).show();
-        onDetectionModeResume();
+        //Toast.makeText(getApplicationContext(), "Motion detection mode", Toast.LENGTH_LONG).show();
+        onResumeMD();
 
-        if(motionDetectorCallback!=null) {
-            Toast.makeText(getApplicationContext(), "Motion detection mode "+motionDetectorCallback, Toast.LENGTH_LONG).show();
 
-            motionDetector.setMotionDetectorCallback(motionDetectorCallback);
-            // Config Options
-            motionDetector.setCheckInterval(700);
-            motionDetector.setLeniency(35);
-            //motionDetector.setMinLuma(1000);
-        }
 
         response.addTextChangedListener(new TextWatcher() {
             @Override
@@ -228,18 +166,17 @@ public class ServerActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if(s.toString().compareTo("Record") == 0){
-                    startRecording();
+                    motionDetector.onPause();
+                    String fileName = startRecording();
+                    sendMail(0,fileName,"video");
+
                 }
                 if (s.toString().compareTo("Stop") == 0){
                     stopRecording();
                 }
                 if (s.toString().compareTo("Detect") == 0){
-                    //dm.setDetectionMode(true);
-                    Toast.makeText(getApplicationContext(), "Motion detection mode", Toast.LENGTH_LONG).show();
-                    onDetectionModeResume();
-
                     if(motionDetectorCallback!=null) {
-                        Toast.makeText(getApplicationContext(), "Motion detection mode "+motionDetectorCallback, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Motion detection mode ", Toast.LENGTH_LONG).show();
 
                         motionDetector.setMotionDetectorCallback(motionDetectorCallback);
                         // Config Options
@@ -247,8 +184,6 @@ public class ServerActivity extends AppCompatActivity {
                         motionDetector.setLeniency(35);
                         //motionDetector.setMinLuma(1000);
                     }
-
-
 
                 }
 
@@ -264,12 +199,12 @@ public class ServerActivity extends AppCompatActivity {
     }
 
     //@Override
-    protected void onDetectionModeResume() {
+    protected void onResumeMD() {
         //super.onResume();
         if(motionDetector!=null) {
             motionDetector.onResume();
             if (motionDetector.checkCameraHardware()) {
-                Toast.makeText(getApplicationContext(), "On motion mode", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Camera detected", Toast.LENGTH_LONG).show();
                 mCamera = motionDetector.getCamera();
 
             } else {
@@ -279,18 +214,11 @@ public class ServerActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if(motionDetector!=null) {
-            motionDetector.onPause();
-        }
-    }
 
     android.hardware.Camera.PictureCallback mPicture = new android.hardware.Camera.PictureCallback() {
         @Override
         public void onPictureTaken(byte[] data, android.hardware.Camera camera) {
-            File pictureFile = getOutputMediaFile();
+            final File pictureFile = getOutputMediaFile();
             if (pictureFile == null) {
                 return;
             }
@@ -305,30 +233,64 @@ public class ServerActivity extends AppCompatActivity {
 
             } catch (IOException e) {
             }
-            mCamera.startPreview();
+           sendMail(0,pictureFile.getAbsolutePath(),"image");
+           mCamera.startPreview();
         }
 
     };
+
+    private void sendMail(final int sec, final String file, final String typeFile) {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    GMailSender sender = new GMailSender("WatchUHouse@gmail.com",
+                            "jbdf4mnP");
+                    Thread.sleep(sec);
+
+                    sender.sendMail("WatchHouse: Motion detection "+typeFile,
+                            "Hey,\n\nWe detected some motion at your home, please, take a look to the "+typeFile+" below.\n" +
+                                    "P.S. If you want to take a video and see what is happening now, please," +
+                                    " go to WatchHouse and click on Record Video button.\n\nStay safe,\n" +
+                                    "Your WatchHouse.", file,
+                            "WatchUHouse@gmail.com", "12miralis@gmail.com");
+                } catch (Exception e) {
+                    Log.e("SendMail", e.getMessage(), e);
+                }
+            }
+
+        }).start();
+
+    }
 
 
     private File getOutputMediaFile() {
         // Create a media file name
         Calendar cc = Calendar.getInstance();
-        int year=cc.get(Calendar.YEAR);
-        int month=cc.get(Calendar.MONTH);
+        int year = cc.get(Calendar.YEAR);
+        int month = cc.get(Calendar.MONTH);
         int day = cc.get(Calendar.DAY_OF_MONTH);
         int hour = cc.get(Calendar.HOUR_OF_DAY);
         int minute = cc.get(Calendar.MINUTE);
         int second = cc.get(Calendar.SECOND);
 
-        String date = day+"-"+month+"-"+year+"_"+hour+"h"+minute+"s"+second;
+        mediaStorageDir = new File(
+                Environment
+                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                "watchHouse");
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                Log.d("watchHouse", "failed to create directory");
+            }
+        }
+
+
+        String date = day+"-"+month+"-"+year+"_"+hour+"h"+minute+"m"+second;
 
         File mediaFile;
         mediaFile = new File(mediaStorageDir.getPath() + File.separator
                 + "WH_" + date + ".jpg");
-        //count++;
-
-        Log.d("watchHouse","count"+ date);
 
         return mediaFile;
     }
