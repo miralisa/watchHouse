@@ -20,6 +20,12 @@
         android:id="@+id/surfaceView"
         />
 
+    <SurfaceView
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:id="@+id/surfaceViewDetection" />
+
+
     <Chronometer
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

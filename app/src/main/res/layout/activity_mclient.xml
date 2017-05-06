@@ -32,4 +32,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
         android:id="@+id/response" />
+
+    <Button
+        android:text="Detection movement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/response"
+        android:layout_alignRight="@+id/buttonRecord"
+        android:layout_alignEnd="@+id/buttonRecord"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp"
+        android:id="@+id/btnDetection" />
 </RelativeLayout>

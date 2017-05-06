@@ -96,6 +96,11 @@ public class Client extends AsyncTask<String, String, String> {
                     Log.d(tag, "envoi " + params[0]);
 
                     //envoi(msgReply);
+                } else if (params[0].compareTo("Detect") == 0) {
+                    envoi(params[0]);
+                    Log.d(tag, "envoi " + params[0]);
+
+                    //envoi(msgReply);
                 }
                 response = reception();
 

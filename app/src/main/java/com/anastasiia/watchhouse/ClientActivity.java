@@ -16,7 +16,7 @@ import java.net.Socket;
 public class ClientActivity extends AppCompatActivity {
 
     TextView response;
-    Button btnRecord, btnStop;
+    Button btnRecord, btnStop, btnMotionDetection;
     String ip = "192.168.1.91";
     int port = 5555;
 
@@ -27,6 +27,7 @@ public class ClientActivity extends AppCompatActivity {
         response = (TextView) findViewById(R.id.response);
         btnRecord = (Button) findViewById(R.id.buttonRecord);
         btnStop = (Button) findViewById(R.id.btnStop);
+        btnMotionDetection = (Button) findViewById(R.id.btnDetection);
 
 
         btnRecord.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +45,15 @@ public class ClientActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Client stop = new Client(ip, port, response);
                 stop.execute("Stop");
+            }
+        });
+
+        btnMotionDetection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Client detection = new Client(ip, port, response);
+                detection.execute("Detect");
+
             }
         });
 
