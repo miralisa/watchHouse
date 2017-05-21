@@ -21,30 +21,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
-        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.1_96d2a82e3c20fe6442226dd76e51f54de3537cb7.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
         <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/pre-dexed/debug/com.android.support-design-25.1.1_9b165fa0f426084a1fb8322f161531dae406c0f5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/anastasiia/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
-        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/pre-dexed/debug/support-annotations-25.1.1_7be0946673e5d002ebd9afbd5a8a99302e4d322e.jar" />
     </item>
     <item
         is-multidex="false"
@@ -63,33 +45,6 @@
         revision="25.0.2"
         sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
         <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.1.1_c0b1a9e12566b1bea8c30e89c213ca780ee6b5e6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
-        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.1.1_69430332f7f9b0f6c80c7cd8f10dc38d426ec3ca.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
-        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.1_b117065d2431112b99a86e635e5768e5e31d9b8e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
-        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_0c18779e1ffba5c0993ff76b74cbdab2bf5c7478.jar" />
     </item>
     <item
         is-multidex="false"
@@ -120,15 +75,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
-        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.1_b461f3478e49e70081babed1fb010c28d870bb2e.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -138,39 +84,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.1_3b71cff6d2662d0bdc19f2301350db8ec718f7f6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
-        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_b68b703f034706536add1af57c248359fa978cf4.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
         <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.1.1_b3b98e61a740773efecf8cf013cdda42e6cd5b65.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
-        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.1.1_b1501e58d7f0d9b47061bba6477022bde2d16332.jar" />
     </item>
     <item
         is-multidex="false"
@@ -219,15 +138,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
-        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.1.1_cdfc40dd688ce000f757dbd50435878f3d063811.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -243,15 +153,6 @@
         revision="25.0.2"
         sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
         <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.1_50252332ef1178e1ad3cd15e69cacf1a6cb52695.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
-        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.1_d03fcac80181a4c6d09df056866d768f334bffdd.jar" />
     </item>
     <item
         is-multidex="false"
@@ -282,39 +183,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
-        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.1.1_a9d5a0f478c3deb7388b3f978c99fd6496f633ff.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
         <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_4863efe118cab6249e275e14171d77cb1d7378b3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/libs/additionnal.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="bd9e8dc422bb8c8405359947fe9f4282b49f57f4">
-        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/pre-dexed/debug/additionnal_73388aa3acbe871506d5cad70a9afdb692ec2e2a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/libs/activation.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d1257cbff6faa44c1f325ae0d9413522d4644383">
-        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/pre-dexed/debug/activation_bdc6a27bc62e329179d0238ac4f0d719524f7467.jar" />
     </item>
     <item
         is-multidex="false"
@@ -333,6 +207,132 @@
         revision="25.0.2"
         sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
         <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.1_c9533470bc02207a7e8604d197b4a5bb50fd852d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.1_96d2a82e3c20fe6442226dd76e51f54de3537cb7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anastasiia/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/pre-dexed/debug/support-annotations-25.1.1_7be0946673e5d002ebd9afbd5a8a99302e4d322e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
+        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.1.1_69430332f7f9b0f6c80c7cd8f10dc38d426ec3ca.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.1_b117065d2431112b99a86e635e5768e5e31d9b8e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_0c18779e1ffba5c0993ff76b74cbdab2bf5c7478.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.1_b461f3478e49e70081babed1fb010c28d870bb2e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.1_3b71cff6d2662d0bdc19f2301350db8ec718f7f6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_b68b703f034706536add1af57c248359fa978cf4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
+        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.1.1_b1501e58d7f0d9b47061bba6477022bde2d16332.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
+        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.1.1_cdfc40dd688ce000f757dbd50435878f3d063811.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.1_d03fcac80181a4c6d09df056866d768f334bffdd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
+        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/Dev Android/devMobile/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.1.1_a9d5a0f478c3deb7388b3f978c99fd6496f633ff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/libs/additionnal.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bd9e8dc422bb8c8405359947fe9f4282b49f57f4">
+        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/pre-dexed/debug/additionnal_73388aa3acbe871506d5cad70a9afdb692ec2e2a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/libs/activation.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d1257cbff6faa44c1f325ae0d9413522d4644383">
+        <dex dex="/home/anastasiia/Documents/M1 master Montprllier/S2/watchHouse/app/build/intermediates/pre-dexed/debug/activation_bdc6a27bc62e329179d0238ac4f0d719524f7467.jar" />
     </item>
 
 </items>

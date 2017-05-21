@@ -10,6 +10,7 @@ import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.FileObserver;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.support.annotation.RequiresApi;
@@ -49,6 +50,7 @@ public class ServerActivity extends AppCompatActivity {
     MediaRecorder recorder;
     Chronometer chronometer;
     Boolean isRecording;
+    FileObserver fb;
     //DetectionMode dm;
     //
     //private TextView txtStatus;
@@ -59,10 +61,11 @@ public class ServerActivity extends AppCompatActivity {
     private boolean detectionMode = false;
     SmsManager smsManager;
     File mediaStorageDir;
+    String saveFile;
 
 
-    protected String startRecording(){
-        String saveFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/video.mp4";
+    protected void startRecording(){
+        saveFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/WH_"+getDateTime()+".mp4";
         if (!isRecording){
             recorder = new MediaRecorder();
             recorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
@@ -73,6 +76,17 @@ public class ServerActivity extends AppCompatActivity {
             recorder.setMaxDuration(10000);
             recorder.setPreviewDisplay(surfaceHolder.getSurface());
             recorder.setOutputFile(saveFile);
+            recorder.setOnInfoListener(new MediaRecorder.OnInfoListener() {
+                @Override
+                public void onInfo(MediaRecorder mr, int what, int extra) {
+                    if (what == MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED) {
+                        recorder.stop();
+                        chronometer.stop();
+                        sendMail(0,saveFile,"video", getDateTime());
+                        recorder.release();
+                    }
+                }
+            });
             try {
                 recorder.prepare();
             } catch (IllegalStateException e) {
@@ -89,7 +103,7 @@ public class ServerActivity extends AppCompatActivity {
             chronometer.start();
 
         }
-        return saveFile;
+         //return saveFile;
     }
     protected void stopRecording() {
         if(recorder!=null &&  isRecording == true){
@@ -167,8 +181,22 @@ public class ServerActivity extends AppCompatActivity {
 
                 if(s.toString().compareTo("Record") == 0){
                     motionDetector.onPause();
-                    String fileName = startRecording();
-                    sendMail(0,fileName,"video");
+                    //final String fileName =
+                    startRecording();
+                    /*
+                     fb = new FileObserver(fileName, FileObserver.CLOSE_WRITE) {
+                        @Override
+                        public void onEvent(int event, String path) {
+                            Toast.makeText(getApplicationContext(), "File modified", Toast.LENGTH_LONG).show();
+                            if (fb != null) {
+                                fb.stopWatching();
+                                fb = null;
+                            }
+
+                        }
+                    };
+                    fb.startWatching();
+                       */
 
                 }
                 if (s.toString().compareTo("Stop") == 0){
@@ -233,13 +261,13 @@ public class ServerActivity extends AppCompatActivity {
 
             } catch (IOException e) {
             }
-           sendMail(0,pictureFile.getAbsolutePath(),"image");
+           sendMail(0,pictureFile.getAbsolutePath(),"image", getDateTime());
            mCamera.startPreview();
         }
 
     };
 
-    private void sendMail(final int sec, final String file, final String typeFile) {
+    private void sendMail(final int sec, final String file, final String typeFile, final String date) {
         new Thread(new Runnable() {
 
             @Override
@@ -249,7 +277,7 @@ public class ServerActivity extends AppCompatActivity {
                             "jbdf4mnP");
                     Thread.sleep(sec);
 
-                    sender.sendMail("WatchHouse: Motion detection "+typeFile,
+                    sender.sendMail("WatchHouse: Motion detection "+date,
                             "Hey,\n\nWe detected some motion at your home, please, take a look to the "+typeFile+" below.\n" +
                                     "P.S. If you want to take a video and see what is happening now, please," +
                                     " go to WatchHouse and click on Record Video button.\n\nStay safe,\n" +
@@ -264,9 +292,7 @@ public class ServerActivity extends AppCompatActivity {
 
     }
 
-
-    private File getOutputMediaFile() {
-        // Create a media file name
+    private String getDateTime(){
         Calendar cc = Calendar.getInstance();
         int year = cc.get(Calendar.YEAR);
         int month = cc.get(Calendar.MONTH);
@@ -274,6 +300,13 @@ public class ServerActivity extends AppCompatActivity {
         int hour = cc.get(Calendar.HOUR_OF_DAY);
         int minute = cc.get(Calendar.MINUTE);
         int second = cc.get(Calendar.SECOND);
+
+        String date = day+"-"+month+"-"+year+" "+hour+"h"+minute+"m"+second+"s";
+        return date;
+    }
+
+    private File getOutputMediaFile() {
+        // Create a media file name
 
         mediaStorageDir = new File(
                 Environment
@@ -286,7 +319,7 @@ public class ServerActivity extends AppCompatActivity {
         }
 
 
-        String date = day+"-"+month+"-"+year+"_"+hour+"h"+minute+"m"+second;
+        String date = getDateTime();
 
         File mediaFile;
         mediaFile = new File(mediaStorageDir.getPath() + File.separator
