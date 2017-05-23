@@ -184,7 +184,8 @@ public class ServerActivity extends AppCompatActivity {
 
                 }
                 if (s.toString().compareTo("Stop") == 0){
-                    stopRecording();
+                    motionDetector.onPause();
+
                 }
                 if (s.toString().compareTo("Detect") == 0){
                     if(motionDetectorCallback!=null) {
