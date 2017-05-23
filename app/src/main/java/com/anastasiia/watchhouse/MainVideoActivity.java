@@ -5,18 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MainVideoActivity extends AppCompatActivity {
 
-    Button bServeur, bClient;
+    ImageButton bServeur, bClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_video);
-        bServeur = (Button)findViewById(R.id.btnServeur);
-        bClient = (Button) findViewById(R.id.btnClient);
+        bServeur = (ImageButton)findViewById(R.id.btnServeur);
+        bClient = (ImageButton) findViewById(R.id.btnClient);
 
 
         bClient.setOnClickListener(new View.OnClickListener() {

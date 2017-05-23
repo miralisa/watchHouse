@@ -33,8 +33,6 @@ public class ClientActivity extends AppCompatActivity {
         btnMotionDetection = (Button) findViewById(R.id.btnDetection);
 
 
-
-
         btnRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +47,7 @@ public class ClientActivity extends AppCompatActivity {
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(ClientActivity.this,"You Clicked : " + item.getTitle(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ClientActivity.this,"You will receive a video of " + item.getTitle(),Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 });

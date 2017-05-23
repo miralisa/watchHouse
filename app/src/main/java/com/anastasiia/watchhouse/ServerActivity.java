@@ -175,28 +175,12 @@ public class ServerActivity extends AppCompatActivity {
 
             }
 
-            //@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if(s.toString().compareTo("Record") == 0){
                     motionDetector.onPause();
-                    //final String fileName =
                     startRecording();
-                    /*
-                     fb = new FileObserver(fileName, FileObserver.CLOSE_WRITE) {
-                        @Override
-                        public void onEvent(int event, String path) {
-                            Toast.makeText(getApplicationContext(), "File modified", Toast.LENGTH_LONG).show();
-                            if (fb != null) {
-                                fb.stopWatching();
-                                fb = null;
-                            }
-
-                        }
-                    };
-                    fb.startWatching();
-                       */
 
                 }
                 if (s.toString().compareTo("Stop") == 0){
@@ -318,7 +302,6 @@ public class ServerActivity extends AppCompatActivity {
             }
         }
 
-
         String date = getDateTime();
 
         File mediaFile;
@@ -332,31 +315,3 @@ public class ServerActivity extends AppCompatActivity {
 
 
 }
-
-/*
-class DetectionMode {
-    private boolean dtectionMode = false;
-    private ChangeListener listener;
-
-    public boolean isDetectionMode() {
-        return dtectionMode;
-    }
-
-    public void setDetectionMode(boolean dtectionMode) {
-        this.dtectionMode = dtectionMode;
-        if (listener != null) listener.onChange();
-    }
-
-    public ChangeListener getListener() {
-        return listener;
-    }
-
-    public void setListener(ChangeListener listener) {
-        this.listener = listener;
-    }
-
-    public interface ChangeListener {
-        void onChange();
-    }
-}
-*/
