@@ -2,6 +2,7 @@ package com.anastasiia.watchhouse;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.hardware.Camera;
@@ -14,6 +15,7 @@ import android.os.FileObserver;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -50,22 +52,19 @@ public class ServerActivity extends AppCompatActivity {
     MediaRecorder recorder;
     Chronometer chronometer;
     Boolean isRecording;
-    FileObserver fb;
-    //DetectionMode dm;
-    //
-    //private TextView txtStatus;
+    User u;
+
     private MotionDetector motionDetector;
     private MotionDetectorCallback motionDetectorCallback;
     private Camera mCamera;
-    public int count = 0;
-    private boolean detectionMode = false;
-    SmsManager smsManager;
     File mediaStorageDir;
     String saveFile;
+    DBHandler db;
+    private String email;
 
 
     protected void startRecording(){
-        saveFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/WH_"+getDateTime()+".mp4";
+        saveFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/WH_"+getDateTime(0)+".mp4";
         if (!isRecording){
             recorder = new MediaRecorder();
             recorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
@@ -82,7 +81,7 @@ public class ServerActivity extends AppCompatActivity {
                     if (what == MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED) {
                         recorder.stop();
                         chronometer.stop();
-                        sendMail(0,saveFile,"video", getDateTime());
+                        sendMail(0,saveFile,"video", getDateTime(1));
                         recorder.release();
                     }
                 }
@@ -96,7 +95,6 @@ public class ServerActivity extends AppCompatActivity {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            isRecording = true;
             Toast.makeText(this, "Starting a record!", Toast.LENGTH_LONG).show();
             recorder.start();
             chronometer.setBase(SystemClock.elapsedRealtime());
@@ -104,17 +102,6 @@ public class ServerActivity extends AppCompatActivity {
 
         }
          //return saveFile;
-    }
-    protected void stopRecording() {
-        if(recorder!=null &&  isRecording == true){
-            Toast.makeText(this, "Stop recording!", Toast.LENGTH_LONG).show();
-            recorder.stop();
-            recorder.release();
-            chronometer.stop();
-            //surfaceView = null;
-            //surfaceHolder = null;
-            isRecording = false;
-        }
     }
 
 
@@ -134,6 +121,28 @@ public class ServerActivity extends AppCompatActivity {
         chronometer = (Chronometer) findViewById(R.id.chronometer);
         isRecording = false;
 
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Please enter this IP address on your smartphone in mode Watcher.\nIP :"+server.getIpAddress());
+        alertDialogBuilder.setNegativeButton("Close",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+        /*
+        db = new DBHandler(this);
+        if(db.getUsersCount()==0) {
+            Toast.makeText(getApplicationContext(), "You should run a Watcher mode first!", Toast.LENGTH_LONG).show();
+
+        }else{
+            u = db.getUser(1);
+            Toast.makeText(getApplicationContext(), "You will receive notifications on email: "+u.getEmail(), Toast.LENGTH_LONG).show();
+
+        } */
 
         motionDetector = new MotionDetector(getApplicationContext(), (SurfaceView) findViewById(R.id.surfaceViewDetection));
         motionDetectorCallback = new MotionDetectorCallback() {
@@ -178,13 +187,23 @@ public class ServerActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+                String sentences[] = s.toString().split(" ");
+                String firstWord = sentences[0];
+
                 if(s.toString().compareTo("Record") == 0){
                     motionDetector.onPause();
                     startRecording();
 
                 }
                 if (s.toString().compareTo("Stop") == 0){
+                    Toast.makeText(getApplicationContext(), "Motion detection mode was stopped", Toast.LENGTH_LONG).show();
                     motionDetector.onPause();
+
+                }
+                if (firstWord.compareTo("Email") == 0){
+                    String email = sentences[1];
+                    setEmail(email);
+                    Toast.makeText(getApplicationContext(), "You will receive notifications on email: "+email, Toast.LENGTH_LONG).show();
 
                 }
                 if (s.toString().compareTo("Detect") == 0){
@@ -211,6 +230,12 @@ public class ServerActivity extends AppCompatActivity {
 
     }
 
+    private String getEmail() {
+        return email;
+    }
+    private void setEmail(String email) {
+        this.email = email;
+    }
     //@Override
     protected void onResumeMD() {
         //super.onResume();
@@ -246,13 +271,15 @@ public class ServerActivity extends AppCompatActivity {
 
             } catch (IOException e) {
             }
-           sendMail(0,pictureFile.getAbsolutePath(),"image", getDateTime());
+           sendMail(0,pictureFile.getAbsolutePath(),"image", getDateTime(1));
            mCamera.startPreview();
         }
 
     };
 
     private void sendMail(final int sec, final String file, final String typeFile, final String date) {
+        Toast.makeText(getApplicationContext(), "Sending mail to "+ getEmail(), Toast.LENGTH_LONG).show();
+
         new Thread(new Runnable() {
 
             @Override
@@ -267,7 +294,7 @@ public class ServerActivity extends AppCompatActivity {
                                     "P.S. If you want to take a video and see what is happening now, please," +
                                     " go to WatchHouse and click on Record Video button.\n\nStay safe,\n" +
                                     "Your WatchHouse.", file,
-                            "WatchUHouse@gmail.com", "12miralis@gmail.com");
+                            "WatchUHouse@gmail.com", getEmail());
                 } catch (Exception e) {
                     Log.e("SendMail", e.getMessage(), e);
                 }
@@ -277,7 +304,7 @@ public class ServerActivity extends AppCompatActivity {
 
     }
 
-    private String getDateTime(){
+    private String getDateTime(int bool){
         Calendar cc = Calendar.getInstance();
         int year = cc.get(Calendar.YEAR);
         int month = cc.get(Calendar.MONTH);
@@ -285,8 +312,14 @@ public class ServerActivity extends AppCompatActivity {
         int hour = cc.get(Calendar.HOUR_OF_DAY);
         int minute = cc.get(Calendar.MINUTE);
         int second = cc.get(Calendar.SECOND);
+        String date ="";
+        if(bool == 0) {
+            date = day + "-" + month + "-" + year + " " + hour + "h" + minute + "m" + second + "s";
+        } else
+        if(bool == 1){
+            date = day + "-" + month + "-" + year + " " + hour + "h" + minute + "m";
+        }
 
-        String date = day+"-"+month+"-"+year+" "+hour+"h"+minute+"m"+second+"s";
         return date;
     }
 
@@ -303,7 +336,7 @@ public class ServerActivity extends AppCompatActivity {
             }
         }
 
-        String date = getDateTime();
+        String date = getDateTime(0);
 
         File mediaFile;
         mediaFile = new File(mediaStorageDir.getPath() + File.separator

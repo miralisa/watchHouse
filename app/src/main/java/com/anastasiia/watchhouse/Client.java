@@ -102,6 +102,12 @@ public class Client extends AsyncTask<String, String, String> {
 
                     //envoi(msgReply);
                 }
+                else if (params[0].compareTo("Email") == 0) {
+                    envoi(params[0]+" "+params[1]);
+                    Log.d(tag, "envoi " + params[0]+" "+params[1]);
+
+                    //envoi(msgReply);
+                }
                 response = reception();
 
                 //envoi("Stop record");
@@ -125,7 +131,7 @@ public class Client extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        textResponse.setText(response);
+        //textResponse.setText(response);
         super.onPostExecute(result);
     }
 

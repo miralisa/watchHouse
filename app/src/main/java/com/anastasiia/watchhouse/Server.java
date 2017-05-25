@@ -170,8 +170,7 @@ public class Server {
                             .nextElement();
 
                     if (inetAddress.isSiteLocalAddress()) {
-                        ip += "Server running at : "
-                                + inetAddress.getHostAddress();
+                        ip = inetAddress.getHostAddress();
                     }
                 }
             }
