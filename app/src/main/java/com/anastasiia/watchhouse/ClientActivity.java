@@ -169,7 +169,7 @@ public class ClientActivity extends AppCompatActivity {
                 Client detection = new Client(getIp(), port, response);
                 detection.execute("Detect");
                 response.setText("You are on 'Detection movement' mode and you will receive notifications" +
-                        " on your email "+mail+"if some motion was detected.");
+                        " on your email "+mail+", if some motion was detected.");
 
             }
         });
