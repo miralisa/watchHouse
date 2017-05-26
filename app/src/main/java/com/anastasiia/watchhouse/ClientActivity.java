@@ -8,12 +8,17 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +27,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.mail.Message;
 
@@ -30,7 +36,7 @@ public class ClientActivity extends AppCompatActivity {
 
     TextView response;
     Button btnRecord, btnStop, btnMotionDetection, btnReadMails;
-
+    ImageButton imageButton;
     String ip = "";
     int port = 5555;
     final Context context = this;
@@ -45,7 +51,6 @@ public class ClientActivity extends AppCompatActivity {
         this.ip = ip;
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +60,7 @@ public class ClientActivity extends AppCompatActivity {
         btnStop = (Button) findViewById(R.id.btnStop);
         btnMotionDetection = (Button) findViewById(R.id.btnDetection);
         btnReadMails = (Button)findViewById(R.id.btnMail);
+        imageButton = (ImageButton)findViewById(R.id.settings);
 
         db = new DBHandler(this);
 
@@ -75,7 +81,7 @@ public class ClientActivity extends AppCompatActivity {
         final EditText userIP = (EditText) promptsView
                 .findViewById(R.id.editTextDialogUserIP);
 
-
+        
         // set dialog message
         alertDialogBuilder
                 .setCancelable(false)
@@ -84,6 +90,7 @@ public class ClientActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog,int id) {
                                 // Inserting
                                 Log.d("Insert: ", "Inserting ..");
+
                                 User insert = new User(userName.getText().toString(), userEmail.getText().toString(), userIP.getText().toString());
                                 db.addUser(insert);
                                 List<User> users =db.getAllUsers();
@@ -116,9 +123,7 @@ public class ClientActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                Intent mailClient = getPackageManager().getLaunchIntentForPackage("com.google.android.gm");
-               //mailClient.setAction(Intent.ACTION_SEARCH);
-               //mailClient.putExtra("query", "watchHouse");
-               startActivity(mailClient);
+                startActivity(mailClient);
             }
         });
 
@@ -167,6 +172,17 @@ public class ClientActivity extends AppCompatActivity {
                         " on your email "+mail+"if some motion was detected.");
 
             }
+        });
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ClientActivity.this, Settings.class);
+                startActivity(intent);
+
+
+            }
+
         });
 
     }

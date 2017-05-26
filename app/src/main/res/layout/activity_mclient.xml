@@ -111,7 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_action_settings"
-        android:id="@+id/sittings"
+        android:id="@+id/settings"
         android:layout_alignWithParentIfMissing="true"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/imageView"

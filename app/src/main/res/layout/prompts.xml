@@ -27,11 +27,12 @@
         android:text="Email: "
         android:textSize="9pt" />
 
-    <EditText
-        android:id="@+id/editTextDialogUserEmail"
+       <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editTextDialogUserEmail" />
 
     <TextView
         android:id="@+id/textView3"
@@ -44,6 +45,6 @@
         android:id="@+id/editTextDialogUserIP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+         />
 
 </LinearLayout>
