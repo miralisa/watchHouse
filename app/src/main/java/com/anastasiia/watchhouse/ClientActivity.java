@@ -81,7 +81,7 @@ public class ClientActivity extends AppCompatActivity {
         final EditText userIP = (EditText) promptsView
                 .findViewById(R.id.editTextDialogUserIP);
 
-        
+
         // set dialog message
         alertDialogBuilder
                 .setCancelable(false)

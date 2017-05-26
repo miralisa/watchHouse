@@ -41,6 +41,35 @@ public class Settings extends AppCompatActivity {
         email.setText(u1.getEmail());
         ip.setText(u1.getIp());
 
+
+
+        iBname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createDialog("Name", u1);
+            }
+        });
+
+        iBemail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createDialog("Email", u1);
+
+            }
+        });
+
+        iBip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createDialog("Ip", u1);
+
+            }
+        });
+
+
+    }
+
+    protected void createDialog(final String type, final User u1){
         LayoutInflater li = LayoutInflater.from(context);
 
         View promptsView = li.inflate(R.layout.prompts_settings, null);
@@ -52,99 +81,41 @@ public class Settings extends AppCompatActivity {
         final EditText changed = (EditText) promptsView
                 .findViewById(R.id.editTextSettings);
 
-
-        // set prompts.xml to alertdialog builder
         alertDialogBuilder.setView(promptsView);
 
+        textViewEdit.setText(type+":");
 
-        iBname.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                textViewEdit.setText("Name:");
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // Inserting
+                                Log.d("Insert: ", "Inserting ..");
+                                if(type.compareTo("Ip") == 0) {
+                                    ip.setText(changed.getText().toString());
+                                    u1.setIp(changed.getText().toString());
+                                }
+                                if(type.compareTo("Name") == 0) {
+                                    name.setText(changed.getText().toString());
+                                    u1.setName(changed.getText().toString());
+                                }
+                                if(type.compareTo("Email") == 0) {
+                                    email.setText(changed.getText().toString());
+                                    u1.setEmail(changed.getText().toString());
+                                }
+                                db.updateUser(u1);
 
-                alertDialogBuilder
-                        .setCancelable(false)
-                        .setPositiveButton("OK",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
-                                        // Inserting
-                                        Log.d("Insert: ", "Inserting ..");
-                                        name.setText(changed.getText().toString());
-                                        u1.setName(changed.getText().toString());
-                                        db.updateUser(u1);
-
-                                    }
-                                })
-                        .setNegativeButton("Cancel",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                    }
-                                });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-            }
-        });
-
-        iBemail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                textViewEdit.setText("Email:");
-
-                alertDialogBuilder
-                        .setCancelable(false)
-                        .setPositiveButton("OK",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
-                                        // Inserting
-                                        Log.d("Insert: ", "Inserting ..");
-                                        email.setText(changed.getText().toString());
-                                        u1.setEmail(changed.getText().toString());
-                                        db.updateUser(u1);
-
-                                    }
-                                })
-                        .setNegativeButton("Cancel",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                    }
-                                });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-
-            }
-        });
-
-        iBip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                textViewEdit.setText("IP:");
-
-                alertDialogBuilder
-                        .setCancelable(false)
-                        .setPositiveButton("OK",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
-                                        // Inserting
-                                        Log.d("Insert: ", "Inserting ..");
-                                        ip.setText(changed.getText().toString());
-                                        u1.setIp(changed.getText().toString());
-                                        db.updateUser(u1);
-
-                                    }
-                                })
-                        .setNegativeButton("Cancel",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                    }
-                                });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-
-            }
-        });
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
 
     }
 }
