@@ -98,7 +98,7 @@ class GMailSender extends javax.mail.Authenticator {
 
         }
     }
-
+/*
     public class ByteArrayDataSource implements DataSource {
         private byte[] data;
         private String type;
@@ -137,5 +137,6 @@ class GMailSender extends javax.mail.Authenticator {
             throw new IOException("Not Supported");
         }
     }
+    */
 }
 

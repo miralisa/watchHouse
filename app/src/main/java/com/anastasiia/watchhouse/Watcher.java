@@ -25,17 +25,17 @@ import static android.R.id.message;
  * Created by anastasiia on 01.04.17.
  */
 
-public class Client extends AsyncTask<String, String, String> {
+public class Watcher extends AsyncTask<String, String, String> {
 
     String dstAddress;
     int dstPort;
     String response = "";
     TextView textResponse;
     Socket socket = null;
-    String tag = "@---Client---@";
+    String tag = "@---Watcher---@";
 
 
-    Client(String addr, int port, TextView textResponse) {
+    Watcher(String addr, int port, TextView textResponse) {
         Log.d(tag, "debut creation");
         dstAddress = addr;
         dstPort = port;

@@ -3,36 +3,21 @@ package com.anastasiia.watchhouse;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.PopupMenu;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.Socket;
 import java.util.List;
-import java.util.regex.Pattern;
-
-import javax.mail.Message;
 
 
-public class ClientActivity extends AppCompatActivity {
+public class WatcherActivity extends AppCompatActivity {
 
     TextView response;
     Button btnRecord, btnStop, btnMotionDetection, btnReadMails;
@@ -133,11 +118,11 @@ public class ClientActivity extends AppCompatActivity {
                 u1 = db.getUser(1);
                 setIp(u1.getIp());
                 String mail = u1.getEmail();
-                Client email = new Client(getIp(), port, response);
+                Watcher email = new Watcher(getIp(), port, response);
                 email.execute("Email", mail);
 
 
-                Client record = new Client(getIp(), port, response);
+                Watcher record = new Watcher(getIp(), port, response);
                 record.execute("Record");
                 response.setText("You will receive a video on your email "+mail+".");
 
@@ -150,7 +135,7 @@ public class ClientActivity extends AppCompatActivity {
                 u1 = db.getUser(1);
                 setIp(u1.getIp());
 
-                Client stop = new Client(getIp(), port, response);
+                Watcher stop = new Watcher(getIp(), port, response);
                 stop.execute("Stop");
                 response.setText("'Detection movement' mode was stopped.");
             }
@@ -163,10 +148,10 @@ public class ClientActivity extends AppCompatActivity {
                 setIp(u1.getIp());
 
                 String mail = u1.getEmail();
-                Client email = new Client(getIp(), port, response);
+                Watcher email = new Watcher(getIp(), port, response);
                 email.execute("Email", mail);
 
-                Client detection = new Client(getIp(), port, response);
+                Watcher detection = new Watcher(getIp(), port, response);
                 detection.execute("Detect");
                 response.setText("You are on 'Detection movement' mode and you will receive notifications" +
                         " on your email "+mail+", if some motion was detected.");
@@ -177,7 +162,7 @@ public class ClientActivity extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ClientActivity.this, Settings.class);
+                Intent intent = new Intent(WatcherActivity.this, SettingsActivity.class);
                 startActivity(intent);
 
 

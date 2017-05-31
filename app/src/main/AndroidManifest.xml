@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainVideoActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,12 +31,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ServerActivity"
+            android:name=".CameraActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ClientActivity"
+            android:name=".WatcherActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Settings"></activity>
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

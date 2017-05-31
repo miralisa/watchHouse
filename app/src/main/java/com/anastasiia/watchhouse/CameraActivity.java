@@ -1,31 +1,19 @@
 package com.anastasiia.watchhouse;
 
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.hardware.Camera;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
-import android.os.FileObserver;
 import android.os.SystemClock;
-import android.os.Vibrator;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -39,14 +27,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
-public class ServerActivity extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity {
     TextView response;
     Button btnStop;
-    Server server;
+    Camera server;
     SurfaceView surfaceView;
     SurfaceHolder surfaceHolder;
     MediaRecorder recorder;
@@ -56,7 +43,7 @@ public class ServerActivity extends AppCompatActivity {
 
     private MotionDetector motionDetector;
     private MotionDetectorCallback motionDetectorCallback;
-    private Camera mCamera;
+    private android.hardware.Camera mCamera;
     File mediaStorageDir;
     String saveFile;
     DBHandler db;
@@ -113,7 +100,7 @@ public class ServerActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         response = (TextView) findViewById(R.id.textView);
-        server = new Server(this);
+        server = new Camera(this);
         response.setText(server.getIpAddress() + ":" + server.getPort());
         //btnStop  = (Button)findViewById(R.id.btnStop);
         surfaceView = (SurfaceView)findViewById(R.id.surfaceView);
